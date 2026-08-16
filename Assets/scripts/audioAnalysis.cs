@@ -40,6 +40,12 @@ public class audioAnalysis : MonoBehaviour
             energies[w] = sumSquares / windowSize;
         }
 
+        float[] flux = new float [numWindows];
+        for(int w=1; w < numWindows; w++ )
+        {
+            flux[w] = Mathf.Max(0f, energies[w] - energies[w-1]);
+        }
+
         int historySize = Mathf.RoundToInt(clip.frequency / (float)windowSize);
         List<float> beatTimes = new List<float>();
         float lastBeatTime = -minGapSeconds;
@@ -48,12 +54,12 @@ public class audioAnalysis : MonoBehaviour
         {
             float localAverage = 0f;
             for (int k = w - historySize; k < w; k++)
-                localAverage += energies[k];
+                localAverage += flux[k];
             localAverage /= historySize;
 
             float windowTime = (w * windowSize) / (float)clip.frequency;
 
-            if (energies[w] > localAverage * sensitivity && windowTime - lastBeatTime >= minGapSeconds)
+            if (flux[w] > localAverage * sensitivity && windowTime - lastBeatTime >= minGapSeconds)
             {
                 int windowStart = w * windowSize;
                 int peakIndex = windowStart;
