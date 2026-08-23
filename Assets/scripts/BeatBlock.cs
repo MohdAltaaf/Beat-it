@@ -9,12 +9,14 @@ public class BeatBlock : MonoBehaviour
         GetComponent<Collider>().isTrigger = true;
     }
 
-    void OggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Trigger hit by: {other.gameObject.name}");
         if(isTriggered || !other.CompareTag("Bike")) return;
         isTriggered = true;
-        AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        AudioSource.PlayClipAtPoint(hitSound, transform.position, 1f);
+        FindAnyObjectByType<CameraFX>()?.Punch();
+        FindAnyObjectByType<GameState>()?.RegisterBeatCatch();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 2f);     

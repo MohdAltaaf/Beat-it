@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.08235294, g: 0.10588236, b: 0.13333334, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.028
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 13086781}
   - component: {fileID: 13086780}
+  - component: {fileID: 13086782}
   m_Layer: 0
   m_Name: RuntimeManager
   m_TagString: Untagged
@@ -148,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23810d060aa851947bd549426376e5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 50
-  maxSpeed: 90
+  startSpeed: 80
+  maxSpeed: 140
   duration: 0
 --- !u!4 &13086781
 Transform:
@@ -166,6 +167,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13086782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13086779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1234751b5a6b6418c2f1446f8d541d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMeter: 0
+  hitAmount: 0.35
+  decayRate: 0.08
+  beatBonusRecovery: 0.1
+  vignette: {fileID: 330585550}
 --- !u!1 &30717257
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +283,8 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -403,9 +423,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bike: {fileID: 1650464045}
-  distance: 3.15
-  height: 5.09
-  followSpeed: 6.43
+  distance: 2.34
+  height: 3.54
+  followSpeed: 5.08
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0cff7aecdb829419b649a68a2e2228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 330585545}
+  punchAmount: 5
+  recoverySpeed: 1
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1ed7be75c01874fb5c94edcbfa627b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalVolume: {fileID: 832575518}
+  maxIntensity: 0.473
 --- !u!1 &551172283
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,75 +541,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551172283}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &553401400
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.4429708
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3504988
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5395468
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7413258270219416789, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7848068593180660908, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-      propertyPath: m_Name
-      value: BeatBlock
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
 --- !u!1 &614028092
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +554,8 @@ GameObject:
   - component: {fileID: 614028095}
   - component: {fileID: 614028096}
   - component: {fileID: 614028097}
+  - component: {fileID: 614028098}
+  - component: {fileID: 614028099}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -594,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runTiming: {fileID: 13086780}
-  TestFilePath: C:\Users\KSF\Downloads\Music\Discord - The Living Tombstone (youtube).mp3
+  TestFilePath: C:\Users\KSF\Downloads\Music\misery.mp3
 --- !u!4 &614028094
 Transform:
   m_ObjectHideFlags: 0
@@ -625,7 +607,7 @@ MonoBehaviour:
   windowSize: 1024
   sensitivity: 5
   minGapSeconds: 0.2
-  lowPassCutoffHz: 150
+  lowPassCutoffHz: 168
 --- !u!82 &614028096
 AudioSource:
   m_ObjectHideFlags: 0
@@ -639,13 +621,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.342
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 147
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -735,8 +717,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263efbcc23e12fa42a65566d2322323b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatBlocPrefab: {fileID: 7848068593180660908, guid: 18eeb19eb0e9b794688fb252674510f3, type: 3}
-  blockHeight: 1
+  beatBlocPrefab: {fileID: 6572810165849367849, guid: a781db78f99c58b4cbc26c9446c88bd8, type: 3}
+  melody: {fileID: 614028098}
+  bike: {fileID: 1650464046}
+  road: {fileID: 2037061486}
+  blockHeight: 2
+  pathIntensity: 2
+  smoothing: 0.5
+  localAverageBeats: 8
+--- !u!114 &614028098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614028092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c2d74d117606a4a9dba640462d0f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bandEdges:
+  - 200
+  - 500
+  - 1000
+  - 1500
+  - 2000
+  - 2500
+  - 3000
+  - 3500
+  - 4000
+  windowSize: 1024
+--- !u!114 &614028099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614028092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8b2e298736404488894f5025e48227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carPrefabs:
+  - {fileID: 6012626682489113584, guid: 2213071a44497bf428dd3933ded580b8, type: 3}
+  - {fileID: 5982138864052086068, guid: 532d6c32e1b5f174581fc018e36d9071, type: 3}
+  - {fileID: 4085829449424370947, guid: 08e032b8515d6684aadb9f42e5c2a698, type: 3}
+  timing: {fileID: 13086780}
+  road: {fileID: 2037061486}
+  bike: {fileID: 1650464046}
+  carHeight: 1.24
+  spawnChance: 0.95
+  carSpeedFraction: 0.646
+  minDetourMargin: 3.7
+  onPathDespawnBuffer: 1.5
+  ambientSpacingSeconds: 1.03
+  ambientSpawnChance: 0.905
+  ambientDespawnBuffer: 3
+  straightThreshold: 0.5
 --- !u!1 &805903040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,13 +1094,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044147110}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3538029, y: -0, z: -0, w: 0.93532}
-  m_LocalPosition: {x: 0, y: -1.296, z: -0.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.0057278425, y: -0, z: -0, w: 0.9999836}
+  m_LocalPosition: {x: 0, y: 0.213, z: 0.513}
+  m_LocalScale: {x: 1.2529385, y: 0.28822026, z: 0.17755418}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1994240582}
-  m_LocalEulerAnglesHint: {x: 41.44, y: 0, z: 0}
+  m_Father: {fileID: 1944891170}
+  m_LocalEulerAnglesHint: {x: 30.3, y: 0, z: 0}
 --- !u!114 &1044147112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,11 +1134,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.9547169, g: 0.76299036, b: 0, a: 1}
+  m_Color: {r: 0.9529412, g: 0.5246468, b: 0, a: 1}
   m_Intensity: 75.44
-  m_Range: 17.9
-  m_SpotAngle: 100.59195
-  m_InnerSpotAngle: 28.264051
+  m_Range: 64.5
+  m_SpotAngle: 56.178436
+  m_InnerSpotAngle: 41.722755
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1390,6 +1429,8 @@ GameObject:
   - component: {fileID: 1650464047}
   - component: {fileID: 1650464046}
   - component: {fileID: 1650464048}
+  - component: {fileID: 1650464050}
+  - component: {fileID: 1650464049}
   m_Layer: 3
   m_Name: Bike
   m_TagString: Bike
@@ -1409,9 +1450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a3eb4b77bbb2645ae7dc806f9348bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weavingSpeed: 15
+  weavingSpeed: 10
   tiltSpeed: 15
   tiltAmount: 30
+  correctionRate: 5
   bikeVis: {fileID: 1944891166}
   road: {fileID: 2037061486}
   runTiming: {fileID: 13086780}
@@ -1462,6 +1504,54 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!65 &1650464049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650464045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 1.56, z: 2.79}
+  m_Center: {x: 0, y: 0, z: -0.35}
+--- !u!54 &1650464050
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650464045}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 60
+  m_CollisionDetection: 0
 --- !u!1 &1877288322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1651,6 @@ GameObject:
   - component: {fileID: 1944891169}
   - component: {fileID: 1944891168}
   - component: {fileID: 1944891167}
-  - component: {fileID: 1944891173}
   m_Layer: 3
   m_Name: Bike
   m_TagString: Bike
@@ -1588,7 +1677,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.41, y: 1.54, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1944891168
 MeshRenderer:
@@ -1658,6 +1747,7 @@ Transform:
   m_Children:
   - {fileID: 1877288323}
   - {fileID: 30717258}
+  - {fileID: 1044147111}
   - {fileID: 1994240582}
   - {fileID: 551172284}
   - {fileID: 1529261871}
@@ -1665,33 +1755,6 @@ Transform:
   - {fileID: 908861355}
   m_Father: {fileID: 1650464047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1944891173
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944891166}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 60
-  m_CollisionDetection: 0
 --- !u!1 &1994240581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,8 +1785,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.614, z: 0.41}
   m_LocalScale: {x: 1.2529385, y: 0.34787548, z: 0.12031465}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1044147111}
+  m_Children: []
   m_Father: {fileID: 1944891170}
   m_LocalEulerAnglesHint: {x: -29.644, y: 0, z: 0}
 --- !u!23 &1994240584
@@ -1812,7 +1874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadWidth: 1
-  roadLength: 500
+  roadLength: 10000
 --- !u!64 &2037061487
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1897,7 +1959,7 @@ Transform:
   m_GameObject: {fileID: 2037061485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.8}
+  m_LocalPosition: {x: 0, y: 0, z: 500}
   m_LocalScale: {x: 1.5, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1914,4 +1976,3 @@ SceneRoots:
   - {fileID: 1157283934}
   - {fileID: 614028094}
   - {fileID: 13086781}
-  - {fileID: 553401400}

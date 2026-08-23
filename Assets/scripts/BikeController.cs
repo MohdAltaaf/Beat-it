@@ -19,6 +19,7 @@ public class BikeController : MonoBehaviour
     private float weaveInput;
     private Rigidbody rb;
     private float smoothElapsed = 0f;
+    public float SmoothedElapsed => smoothElapsed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -9,6 +9,7 @@ public class AudioLoader : MonoBehaviour
     private AudioClip loadedClip;
   
     public RunTiming runTiming;
+    public GameState gameState;
     
    
     public string TestFilePath = @"C:\Users\KSF\Downloads\Music\TestSubject.mp3";
@@ -54,8 +55,10 @@ public class AudioLoader : MonoBehaviour
                 Debug.Log($"First moment of sound is at array index: {firstNonZero}, ~{timeSeconds:F2}s in.");
 
                 var beats = GetComponent<audioAnalysis>().DetectBeats(loadedClip);
-                GetComponent<LevelGenerator>().spawnBeatBlocks(runTiming, beats);
+                GetComponent<LevelGenerator>().SpawnBeatBlocks(runTiming, beats, loadedClip);
 
+                var pathXs = GetComponent<LevelGenerator>().SpawnBeatBlocks(runTiming, beats, loadedClip);
+                GetComponent<TrafficGenerator>().SpawnTraffic(beats, pathXs);
 
                 Debug.Log($"Found {beats.Count} beats.");
                 
@@ -90,6 +93,8 @@ public class AudioLoader : MonoBehaviour
             yield return null;
 
         }
+        if (!gameState.IsGameOver)
+            gameState.TriggerWin();
     }
 
     public float GetElapsedSongTime()
@@ -97,9 +102,12 @@ public class AudioLoader : MonoBehaviour
         return (float)(AudioSettings.dspTime - songStartDspTime);
     }
    
+  public string fallbackTestPath = @"C:\Users\KSF\Downloads\Music\TestSubject.mp3"; // lets you test this scene directly, without going through the menu each time
+
     void Start()
     {
-        StartCoroutine(loadMp3(TestFilePath));
+        string path = string.IsNullOrEmpty(GameSession.SelectedSongPath) ? fallbackTestPath : GameSession.SelectedSongPath;
+        StartCoroutine(loadMp3(path));
     }
 
 

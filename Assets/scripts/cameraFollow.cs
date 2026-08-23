@@ -15,12 +15,13 @@ public class cameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
+   public bool followEnabled = true;
+
     void LateUpdate()
     {
-        
-        Vector3 targetPosition = Bike .transform.position + new Vector3(0, height, -distance);
-        
+        if (!followEnabled) return;
+        Vector3 targetPosition = Bike.transform.position + new Vector3(0, height, -distance + 5f);
         transform.position = Vector3.Lerp(transform.position, targetPosition, 1f - Mathf.Exp(-followSpeed * Time.deltaTime));
-        transform.LookAt(Bike.transform.position + new Vector3 (0, 0, distance));
+        transform.LookAt(Bike.transform.position);
     }
 }
