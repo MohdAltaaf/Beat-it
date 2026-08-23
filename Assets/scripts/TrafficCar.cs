@@ -38,6 +38,7 @@ public class TrafficCar : MonoBehaviour
             Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
 
         FindAnyObjectByType<GameState>()?.RegisterCarHit();
+        FindAnyObjectByType<ScoreManager>()?.BreakStreak();
         Destroy(gameObject); // poof - gone before the bike could visibly pass through it
     }
 }

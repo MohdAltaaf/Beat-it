@@ -17,6 +17,7 @@ public class BeatBlock : MonoBehaviour
         AudioSource.PlayClipAtPoint(hitSound, transform.position, 1f);
         FindAnyObjectByType<CameraFX>()?.Punch();
         FindAnyObjectByType<GameState>()?.RegisterBeatCatch();
+        FindAnyObjectByType<ScoreManager>()?.RegisterBeatHit();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 2f);     
