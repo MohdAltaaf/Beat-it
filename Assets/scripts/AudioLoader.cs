@@ -76,6 +76,7 @@ public class AudioLoader : MonoBehaviour
     public IEnumerator TestPlayback(AudioClip clip, List<float> beats)
     {
         AudioSource src = GetComponent<AudioSource>();
+        
         src.clip = clip;
         songStartDspTime = AudioSettings.dspTime;
         src.Play();
